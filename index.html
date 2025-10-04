@@ -1,344 +1,798 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-	<meta charset="UTF-8">
-  <title>Lizhipeng1230的博客</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <style>
-	    body {
-  font-family: Arial, sans-serif;
-}
-
-    body {
-      font-family: Arial, sans-serif;
-    }
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
-    h1 {
-      margin: 0;
-    }
-    nav {
-      background-color: #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-    nav ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li {
-      display: inline;
-      margin-right: 10px;
-    }
-    main {
-      padding: 20px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
-    }
-    .post {
-      background-color: #f2f2f2;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-    }
-    .post-title {
-      font-weight: bold;
-      margin: 0;
-    }
-    .post-content {
-      margin-top: 5px;
-    }
-    .form-container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f2f2f2;
-      border-radius: 5px;
-    }
-    .form-container label, .form-container input {
-      display: block;
-      margin-bottom: 10px;
-    }
-    .form-container input[type="submit"] {
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-      /* 设置按钮样式 */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-            font-family: "Roboto", Arial, sans-serif;
-        }
-        
-        .btn:hover {
-            background-color: #555;
-        }
-  
-/* 设置整体样式 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* 设置标题样式 */
-h1 {
-  font-size: 24px;
-  color: #333;
-  margin: 10px 0;
-}
-
-/* 设置文章正文样式 */
-.article {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* 设置日期样式 */
-.date {
-  font-size: 12px;
-  color: #999;
-}
-
-/* 设置链接样式 */
-a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* 设置页脚样式 */
-.footer {
-  font-size: 12px;
-  color: #999;
-  text-align: center;
-  padding: 10px;
-}
-
-        /* 设置页面标题样式 */
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 36px;
-            color: #333;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        /* 设置文章列表样式 */
-        ul {
-            list-style-type: none;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情感记忆</title>
+    <style>
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
         }
-        
-        li {
-            padding: 10px;
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            cursor: pointer;
+        }
+
+        /* 背景图片 */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        /* 开屏文字容器 */
+        .splash-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .splash-text {
+            font-size: 3.5rem;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 2s ease forwards;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 0 20px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 主要内容区域 */
+        .content {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 1s ease, transform 1s ease;
+            z-index: 1;
+            margin-top: 0;
+            transition: margin-top 0.3s ease;
+        }
+
+        .content.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .text-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-box p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: jumpIn 0.8s forwards;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+        }
+
+        @keyframes jumpIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 侧边栏容器 */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 25;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .sidebar-toggle span {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* 音乐播放器 */
+        .music-player {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 15px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .music-player.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .album-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .track-info h3 {
+            font-size: 1rem;
+            color: #333;
             margin-bottom: 5px;
-            background-color: #f2f2f2;
+        }
+
+        .track-info p {
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 5px;
-            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease-in-out;
-            font-family: "Times New Roman", Times, serif;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
-        
-        li:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* 设置按钮样式 */
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
-            text-decoration: none;
+
+        .progress-bar {
+            height: 100%;
+            background: #6e8efb;
             border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-            font-family: "Roboto", Arial, sans-serif;
+            width: 0%;
+            transition: width 0.1s linear;
         }
-        
-        .btn:hover {
-            background-color: #555;
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #555;
         }
-    /* CSS样式 */
-    .red-text {
-      color: red;
-    }
-  </style>
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* 时间显示器 */
+        .time-displayer {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .time-displayer.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .time-displayer h2 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .current-time {
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .current-date {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* 烟花画布 */
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* 响应式设计 */
+        @media (min-width: 769px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .sidebar-toggle {
+                display: none;
+            }
+            
+            .music-player {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 300px;
+            }
+            
+            .time-displayer {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .splash-text {
+                font-size: 2.5rem;
+            }
+            
+            .content {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .text-box p {
+                font-size: 1rem;
+            }
+            
+            .music-player, .time-displayer {
+                position: static;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1 align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome to Lizhipeng1230's Blog</h1>
-  <div class="search">
-    <p align="center">
-    <input type="text" placeholder="Search...">
-    <button>Go</button>
-  </div>
-  <div class="counter">
-    <p align="center">这个页面已被访问了 <span id="count">0</span> 次。</p>
-    <p align="center">
-    <button onclick="incrementCount()">+1</button>
-  </div>
-  <div class="calendar">
-    <h2 align="center">今天是：</h2>
-    <p id="currentDate" align="center"></p>
-    <h2 align="center">日历：</h2>
-    <div id="calendar">
-		<p align="center"></div>
-  </div>
-  <div class="video">
-    <h2 align="left">看看视频吧！：</h2>
-    <p align="left">
-    <video controls>
-      <source src="movie.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <div class="music">
-    <h2 align="left">音乐：</h2>
-	<p align="left">
-<audio controls>
-  <source src="https://music.163.com/outchain/player? type="2&id=1904309240&auto=1&height=66">
-  Your browser does not support the audio element.
-</audio>
-    
-  </div>
-  <div class="article">
-    <p align="left">这是我的个人博客，我会在这里分享一些有趣的内容。</p>
-    <p align="right">如果你想观看Bilibili，请点击下面的按钮：</p>
-    <p align="right">
-    <button onclick="openBilibili()">
-	<p align="right">打开Bilibili</button>
-    </p>
-    <p align="right">喜欢我的博客吗？快来订阅吧！</p>
-    <p align="right">
-    <button onclick="subscribe()">
-	<p align="right">订阅</button>
-    </p>
-    <p align="right">有什么问题想问我吗？</p>
-    <p align="right">
-    <input type="text" id="question" placeholder="输入你的问题">
-    <button onclick="getAnswer()">
-	<p align="right">获取答案</button>
-    </p>
-    <p id="answer" align="center"></p>
-  </div>
-  
+    <!-- 背景图片 -->
+    <div class="background-image"></div>
 
-  <p align="center">
+    <!-- 开屏文字 -->
+    <div class="splash-container" id="splashContainer">
+        <div class="splash-text" id="splashText">请独自观看这些话语</div>
+    </div>
 
-  <script>
-    var count = 0;
+   <!-- 主要内容区域 -->
+<div class="content" id="content">
+    <div class="text-box">
+        <p style="animation-delay: 0.2s">遇见你是我生命中最美好的意外。</p>
+        <p style="animation-delay: 0.4s">你的笑容像阳光一样温暖了我的世界。</p>
+        <p style="animation-delay: 0.6s">和你在一起的每一刻都如此珍贵。</p>
+        <p style="animation-delay: 0.8s">即使现在我们分开了，那些回忆依然鲜活。</p>
+        <p style="animation-delay: 1.0s">我时常想起我们共同度过的时光。</p>
+        <p style="animation-delay: 1.2s">你的声音、你的眼神，都深深印在我心里。</p>
+        <p style="animation-delay: 1.4s">我知道我们之间已经结束，但我依然无法完全放下。</p>
+        <p style="animation-delay: 1.6s">我是一个赌徒 虽然我已经一无所有</p>
+        <p style="animation-delay: 1.8s">也许时间会治愈一切，但有些痕迹永远都在。</p>
+        <p style="animation-delay: 1.85s">我曾经把所有密码都改成了你的名字+生日</p>
+        <p style="animation-delay: 2.0s">感谢你曾经出现在我的生命中，我真的还是喜欢着你。</p>
+        <p style="animation-delay: 2.2s">虽然喜欢着你，但你已经有他人了</p>
+        <p style="animation-delay: 2.4s">我的倒插一笔显得我是如此突兀，多余。</p>
+        <p style="animation-delay: 2.6s">我不知道我该怎么办，我好迷茫悲伤痛苦</p>
+        <p style="animation-delay: 2.8s">我只能遵循我的本性爱一个人放手去让她爱其所物</p>
+        <p style="animation-delay: 3.0s">我在感情上是如此的糟糕</p>
+        <p style="animation-delay: 3.2s">一个彻头彻尾的失败者，被人理解成"小三""绿茶""装货"</p>
+        <p style="animation-delay: 3.4s">因为你我一路挺过来了，但是那些字像是刀子，在我的心上一刀接着一刀的割</p>
+        <p style="animation-delay: 3.6s">呜呜┭┮﹏┭┮我好难受</p>
+        <p style="animation-delay: 3.8s">你说我应该怎么做？爱而不得。我的青春。</p>
+        <p style="animation-delay: 4.0s">我真的真的好想你...可是</p>
+        <p style="animation-delay: 4.2s">我就是个过时者，活在回忆里，最终在回忆里慢慢抹杀。</p>
+        <p style="animation-delay: 4.4s">我们是朋友</p>
+        <p style="animation-delay: 4.6s">至少可以换另外一种方式，祝你幸福。</p>
+        <p style="animation-delay: 4.8s">而我，也正在学着继续前行，带着我们的回忆，直到死亡。</p>
+        <p style="animation-delay: 4.8s">晚安(￣o￣) . z Z，我的好朋友，艾琳馨。2525/10/5 3:16</p>
+    </div>
+</div>
 
-    function openBilibili() {
-      window.open("https://space.bilibili.com/1500085307?spm_id_from=333.1007.0.0");
-    }
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <!-- 音乐播放器 -->
+        <div class="music-player" id="musicPlayer">
+            <div class="music-info">
+                <div class="album-cover">
+                    <img src="album-cover.jpg" alt="Komorebi专辑封面">
+                </div>
+                <div class="track-info">
+                    <h3>Komorebi</h3>
+                    <p>氛围音乐</p>
+                </div>
+            </div>
+            <div class="progress-container" id="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="time-display">
+                <span id="current-time">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+            <div class="controls">
+                <button id="prev-btn">⏮</button>
+                <button id="play-btn">▶</button>
+                <button id="next-btn">⏭</button>
+                <button id="volume-btn">🔊</button>
+            </div>
+        </div>
 
-    function incrementCount() {
-      count++;
-      document.getElementById("count").innerText = count;
-    }
+        <!-- 时间显示器 -->
+        <div class="time-displayer" id="timeDisplayer">
+            <h2>此刻时光</h2>
+            <div class="current-time" id="current-time-display">00:00:00</div>
+            <div class="current-date" id="current-date">2023年1月1日</div>
+        </div>
+    </div>
 
-    function subscribe() {
-      alert("谢谢你的订阅！");
-    }
+    <!-- 侧边栏开关 -->
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <span>☰</span>
+    </div>
 
-    function getAnswer() {
-      var question = document.getElementById("question").value;
-      var answer = "这是一个示例回答。";
-      document.getElementById("answer").innerText = answer;
-    }
+    <!-- 烟花画布 -->
+    <canvas id="fireworksCanvas"></canvas>
 
-    function getCurrentDate() {
-      var currentDate = new Date().toLocaleDateString();
-      document.getElementById("currentDate").innerText = currentDate;
-    }
+    <!-- 音频元素 - 使用本地音乐文件 -->
+    <audio id="audio-player" loop preload="metadata">
+        <source src="komorebi.mp3" type="audio/mpeg">
+        <source src="komorebi.ogg" type="audio/ogg">
+        您的浏览器不支持音频元素。
+    </audio>
 
-    function generateCalendar() {
-      var calendar = document.getElementById("calendar");
-      var currentDate = new Date();
-      var currentYear = currentDate.getFullYear();
-      var currentMonth = currentDate.getMonth();
-
-      var monthNames = [
-        "一月", "二月", "三月", "四月", "五月", "六月",
-        "七月", "八月", "九月", "十月", "十一月", "十二月"
-      ];
-
-      var firstDay = new Date(currentYear, currentMonth, 1).getDay();
-      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-      var calendarHTML = "<table><tr><th colspan='7'>" + monthNames[currentMonth] + " " + currentYear + "</th></tr>";
-      calendarHTML += "<tr><th>周日</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th></tr>";
-
-      var date = 1;
-      for (var i = 0; i < 6; i++) {
-        calendarHTML += "<tr>";
-        for (var j = 0; j < 7; j++) {
-          if (i === 0 && j < firstDay) {
-            calendarHTML += "<td></td>";
-          } else if (date > daysInMonth) {
-            break;
-          } else {
-            calendarHTML += "<td>" + date + "</td>";
-            date++;
-          }
+    <script>
+        // 初始化函数
+        function init() {
+            // 开屏文字动画
+            setTimeout(() => {
+                document.getElementById('splashText').innerText = "我想对你说的话都在这里";
+                
+                setTimeout(() => {
+                    document.getElementById('splashText').innerText = "我放不下你，可是我输了";
+                    
+                    setTimeout(() => {
+                        // 淡出开屏文字
+                        document.getElementById('splashContainer').style.opacity = 0;
+                        document.getElementById('splashContainer').style.transition = 'opacity 1.5s ease';
+                        
+                        // 显示内容
+                        setTimeout(() => {
+                            document.getElementById('splashContainer').style.display = 'none';
+                            document.getElementById('content').classList.add('show');
+                            document.getElementById('musicPlayer').classList.add('show');
+                            document.getElementById('timeDisplayer').classList.add('show');
+                            
+                            // 开始文字动画
+                            const paragraphs = document.querySelectorAll('.text-box p');
+                            paragraphs.forEach((p, index) => {
+                                p.style.animationDelay = `${0.2 + index * 0.2}s`;
+                            });
+                        }, 1500);
+                    }, 3000);
+                }, 3000);
+            }, 3000);
+            
+            // 初始化烟花效果
+            initFireworks();
+            
+            // 初始化音乐播放器
+            initMusicPlayer();
+            
+            // 初始化时间显示器
+            initTimeDisplay();
+            
+            // 初始化侧边栏
+            initSidebar();
         }
-        calendarHTML += "</tr>";
-      }
 
-      calendarHTML += "</table>";
-      calendar.innerHTML = calendarHTML;
-    }
+        // 侧边栏功能
+        function initSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const content = document.getElementById('content');
+            
+            sidebarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('open');
+                
+                // 在移动设备上调整内容区域位置
+                if (window.innerWidth <= 768) {
+                    if (sidebar.classList.contains('open')) {
+                        content.style.marginTop = '80px';
+                    } else {
+                        content.style.marginTop = '0';
+                    }
+                }
+            });
+            
+            // 点击页面其他区域关闭侧边栏
+            document.addEventListener('click', function() {
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    if (window.innerWidth <= 768) {
+                        content.style.marginTop = '0';
+                    }
+                }
+            });
+            
+            // 阻止侧边栏内部点击事件冒泡
+            sidebar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
 
-    getCurrentDate();
-    generateCalendar();
-  </script>
+        // 烟花效果
+        function initFireworks() {
+            const canvas = document.getElementById('fireworksCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置画布大小
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // 烟花粒子类
+            class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    this.velocity = {
+                        x: (Math.random() - 0.5) * 8,
+                        y: (Math.random() - 0.5) * 8
+                    };
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.03 + 0.015;
+                    this.size = Math.random() * 2 + 1;
+                }
+                
+                update() {
+                    this.velocity.y += 0.05; // 重力
+                    this.x += this.velocity.x;
+                    this.y += this.velocity.y;
+                    this.alpha -= this.decay;
+                    
+                    return this.alpha > 0;
+                }
+                
+                draw() {
+                    ctx.globalAlpha = this.alpha;
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            // 烟花类
+            class Firework {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.particles = [];
+                    this.colors = [
+                        '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
+                        '#ff00ff', '#00ffff', '#ffffff', '#ffa500'
+                    ];
+                    
+                    // 创建粒子
+                    for (let i = 0; i < 100; i++) {
+                        const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                        this.particles.push(new Particle(this.x, this.y, color));
+                    }
+                }
+                
+                update() {
+                    this.particles = this.particles.filter(particle => particle.update());
+                    return this.particles.length > 0;
+                }
+                
+                draw() {
+                    this.particles.forEach(particle => particle.draw());
+                }
+            }
+            
+            const fireworks = [];
+            
+            // 点击事件
+            document.body.addEventListener('click', (e) => {
+                // 如果点击的是侧边栏开关，不触发烟花
+                if (e.target.closest('.sidebar-toggle')) return;
+                
+                // 如果点击的是侧边栏内部，不触发烟花
+                if (e.target.closest('.sidebar')) return;
+                
+                fireworks.push(new Firework(e.clientX, e.clientY));
+            });
+            
+            // 动画循环
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                fireworks.forEach((firework, index) => {
+                    if (!firework.update()) {
+                        fireworks.splice(index, 1);
+                    } else {
+                        firework.draw();
+                    }
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
 
- <h2>文章列表</h2>
-    <ul>
-        <li>文章1 <a href="#" class="btn">阅读更多</a></li>
-        <li>文章2 <a href="#" class="btn">阅读更多</a></li>
-        <li>文章3 <a href="#" class="btn">阅读更多</a></li>
-    </ul>
+        // 音乐播放器功能
+        function initMusicPlayer() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playBtn = document.getElementById('play-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            const currentTimeEl = document.getElementById('current-time');
+            const durationEl = document.getElementById('duration');
+            const volumeBtn = document.getElementById('volume-btn');
+            
+            // 设置初始音量
+            audioPlayer.volume = 0.5;
+            
+            // 播放/暂停功能
+            function togglePlay() {
+                if (audioPlayer.paused) {
+                    audioPlayer.play().then(() => {
+                        playBtn.innerHTML = '⏸';
+                    }).catch(error => {
+                        console.error('播放失败:', error);
+                        // 如果播放失败，显示提示
+                        alert('音乐播放失败，请检查音乐文件是否存在');
+                    });
+                } else {
+                    audioPlayer.pause();
+                    playBtn.innerHTML = '▶';
+                }
+            }
+            
+            // 更新进度条
+            function updateProgress(e) {
+                const { duration, currentTime } = e.srcElement;
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                // 更新时间显示
+                let minutes = Math.floor(currentTime / 60);
+                let seconds = Math.floor(currentTime % 60);
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                currentTimeEl.textContent = `${minutes}:${seconds}`;
+                
+                // 更新总时长
+                if (duration) {
+                    let durMinutes = Math.floor(duration / 60);
+                    let durSeconds = Math.floor(duration % 60);
+                    durSeconds = durSeconds < 10 ? '0' + durSeconds : durSeconds;
+                    durationEl.textContent = `${durMinutes}:${durSeconds}`;
+                }
+            }
+            
+            // 设置进度
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audioPlayer.duration;
+                
+                audioPlayer.currentTime = (clickX / width) * duration;
+            }
+            
+            // 音量控制
+            let isMuted = false;
+            function toggleVolume() {
+                if (isMuted) {
+                    audioPlayer.volume = 0.5;
+                    volumeBtn.innerHTML = '🔊';
+                    isMuted = false;
+                } else {
+                    audioPlayer.volume = 0;
+                    volumeBtn.innerHTML = '🔇';
+                    isMuted = true;
+                }
+            }
+            
+            // 事件监听
+            playBtn.addEventListener('click', togglePlay);
+            audioPlayer.addEventListener('timeupdate', updateProgress);
+            progressContainer.addEventListener('click', setProgress);
+            volumeBtn.addEventListener('click', toggleVolume);
+            
+            // 自动播放音乐（需要用户交互）
+            let audioStarted = false;
+            function startAudioOnInteraction() {
+                if (!audioStarted && audioPlayer.paused) {
+                    audioPlayer.play().then(() => {
+                        audioStarted = true;
+                        playBtn.innerHTML = '⏸';
+                        document.body.removeEventListener('click', startAudioOnInteraction);
+                    }).catch(error => {
+                        console.error('自动播放失败:', error);
+                    });
+                }
+            }
+            
+            // 添加点击事件监听器以启动音频
+            document.body.addEventListener('click', startAudioOnInteraction);
+            
+            // 音频加载错误处理
+            audioPlayer.addEventListener('error', function() {
+                console.error('音频加载错误');
+                alert('音乐加载失败，请确保音乐文件存在且格式正确');
+            });
+        }
 
-  <script>
-    // JavaScript代码
-    function makeTextRed() {
-      var elements = document.getElementsByTagName("p");
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].classList.add("red-text");
-      }
-    }
-  </script>
+        // 时间显示功能
+        function initTimeDisplay() {
+            function updateTime() {
+                const now = new Date();
+                
+                // 格式化时间
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let seconds = now.getSeconds();
+                
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                
+                document.getElementById('current-time-display').textContent = `${hours}:${minutes}:${seconds}`;
+                
+                // 格式化日期
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const day = now.getDate();
+                document.getElementById('current-date').textContent = `${year}年${month}月${day}日`;
+            }
+            
+            // 初始化时间显示
+            updateTime();
+            setInterval(updateTime, 1000);
+        }
 
-  <button onclick="makeTextRed()">变红</button>
-	</p>
-<div class="footer">
-    &copy; 2023 Lizhipeng1230. All rights reserved.
-  </div>
+        // 初始化
+        window.onload = init;
+    </script>
 </body>
 </html>
